@@ -5,10 +5,10 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import PresenterCard from './PresenterCard';
+import PresenterGeneration from './PresenterGeneration';
 import { useParams } from 'react-router-dom'
 
-function Cont ({match}) {
+function ContainerGeneration () {
   const [data, setData] = useState([]);
   const strtest = JSON.stringify(data);
   const objtest = JSON.parse(strtest);
@@ -32,36 +32,25 @@ function Cont ({match}) {
 
   useEffect(() => {
     let mounted = true;
-    let load1 = true;
-    let load2 = true;
+    let load = true;
       fetchInventory()
       .then(items => {
         if({mounted}) {
           setData(items)
-          setImgPkmn(items['sprites']['other']['official-artwork']['front_default'])
-          load1 = false;
-          if(!load2){setLoading(false)}
-
+          load = false;
         }
       })
+      .then(setLoading(false))
 
-      fetchDetails()
-      .then(items => {
-        if({mounted}) {
-          setData2(items)
-          load2 = false;
-          if(!load1){setLoading(false)}
-
-        }
-      })
 
       return () => mounted = false;
   }, [])
 
   return(
 
-    <PresenterCard pokemonResult={data} pkmnDetail={data2} error={error} loading={loading} imagen={imgPkmn}   />
+    <PresenterGeneration pokemonResult={data} error={error} loading={loading} />
+
   )
 }
 
-export default Cont;
+export default ContainerGeneration;

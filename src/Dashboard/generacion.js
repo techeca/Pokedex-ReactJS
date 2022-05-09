@@ -6,9 +6,10 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
-import Poke from '../pokeball.png';
+
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import Poke from '../pokeball.png';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import Load from '../Components/Load.js';
 import { styled } from '@mui/material/styles';
@@ -119,7 +120,7 @@ function Generacion(){
     setTimeout(() => {
       setLoading(false)
       console.log('time out')
-    }, 1000)
+    }, 500)
 
   }
 
