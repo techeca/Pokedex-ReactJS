@@ -23,7 +23,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { motion, useAnimation, LazyMotion, domAnimation, m } from "framer-motion";
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import Kanto from '../images/regions/kanto.png'
+import Kanto from '../images/starters/kanto.png'
+import Johto from '../images/starters/johto.png'
+import Hoenn from '../images/starters/hoenn.png'
+import Sinnoh from '../images/starters/sinnoh.png'
+import Unova from '../images/starters/unova.png'
+import Alola from '../images/starters/alola.png'
+import Galar from '../images/starters/galar.png'
+import Kalos from '../images/starters/kalos.png'
 
 const list = {
   visible: { opacity: 1 },
@@ -66,19 +73,29 @@ const defaultTheme = createTheme({
     fontFamily: 'Poppins',
   },
 });
-const styles = {
-    paperContainer: {
-        backgroundImage: `url(${Kanto})`
-    }
-};
 
 function setImgStyle(region){
-  let tempRegion = capitalize(region)
-  console.log(region)
+  let tempRegion = Kanto
+  let pathImg = `/Web/images/starters/${region}.png`
+  //console.log(region)
+  let Image = Kanto
+  //console.log(styles.paperContainer)
+  if(region === 'kanto'){Image = Kanto}
+  else if(region === 'johto'){Image = Johto}
+  else if(region === 'hoenn'){Image = Hoenn}
+  else if(region === 'sinnoh'){Image = Sinnoh}
+  else if(region === 'unova'){Image = Unova}
+  else if(region === 'kalos'){Image = Kalos}
+  else if(region === 'alola'){Image = Alola}
+  else if(region === 'galar'){Image = Galar}
 
   const styles = {
       paperContainer: {
-          backgroundImage: `url(${tempRegion})`
+          backgroundImage: `url(${Image})`,
+          width:'100%',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'contain',
+          backgroundPosition: 'right'
       }
   }
 
@@ -136,14 +153,13 @@ export default function ButtonGeneration(g){
       </Box>
       :
       <motion.div variants={item} initial="hidden" animate={controls} ref={ref}>
-      <Paper variant='outlined' sx={{mt:2}} style={setImgStyle(simpleData['main_region'].name)}>
+      <Paper variant='outlined' sx={{mt:2, textAlign:'left'}} style={setImgStyle(simpleData['main_region'].name)}>
         <Link style={{ textDecoration: 'none' }} to={`/generacion/${simpleData.id}`}>
-          <Box sx={{display:'flex', p:3, justifyContent:'space-between'}}>
-          <Typography variant={'h5'} sx={{color:'text.primary', fontSize:'1.30em'}}>
+          <Box sx={{display:'flex', p:1, flexDirection:'column'}}>
+          <Typography variant={'h5'} sx={{color:'text.primary', fontSize:'1.10em', fontWeight:'Bold'}}>
             {simpleData.names.map((name) => {if(name.language.name === 'en'){return name.name}})}
-
           </Typography>
-          <Typography sx={{color:'text.primary', textAlign:'center'}}>
+          <Typography sx={{color:'text.primary'}}>
             {capitalize(simpleData['main_region'].name)}
           </Typography>
           </Box>
