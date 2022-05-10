@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import Container from '@mui/material/Container';
-
 import CardContent from '@mui/material/CardContent';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -24,6 +23,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { motion, useAnimation, LazyMotion, domAnimation, m } from "framer-motion";
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import Kanto from '../images/regions/kanto.png'
 
 const list = {
   visible: { opacity: 1 },
@@ -66,6 +66,11 @@ const defaultTheme = createTheme({
     fontFamily: 'Poppins',
   },
 });
+const styles = {
+    paperContainer: {
+        backgroundImage: `url(${Kanto})`
+    }
+};
 
 export default function ButtonGeneration(g){
   const [simpleData, setSimpleData] = useState('')
@@ -80,7 +85,7 @@ export default function ButtonGeneration(g){
 }
   //style={{ y:150, opacity:0 }} animate={{y:0, opacity:0.99}} transition={{duration:1}}
 
-const getData = async () => {
+  const getData = async () => {
     if(simpleData.length === 0){
       return fetch(generation.url)
       .then((res) => res.json())
@@ -113,20 +118,18 @@ const getData = async () => {
 };
 
   return(
-
     loading ?
       <Box >
-
       </Box>
       :
       <motion.div variants={item} initial="hidden" animate={controls} ref={ref}>
-      <Paper variant='outlined' sx={{mt:2}}>
+      <Paper variant='outlined' sx={{mt:2}} style={styles.paperContainer}>
         <Link style={{ textDecoration: 'none' }} to={`/generacion/${simpleData.id}`}>
           <Box sx={{display:'flex', p:3, justifyContent:'space-between'}}>
           <Typography variant={'h5'} sx={{color:'text.primary', fontSize:'1.30em'}}>
             {simpleData.names.map((name) => {if(name.language.name === 'en'){return name.name}})}
           </Typography>
-          <Typography  sx={{color:'text.primary', textAlign:'center'}}>
+          <Typography sx={{color:'text.primary', textAlign:'center'}}>
             {capitalize(simpleData['main_region'].name)}
           </Typography>
           </Box>

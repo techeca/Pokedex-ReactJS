@@ -70,7 +70,7 @@ function Generacion(){
   const inputHandler = (e) => {
       setInputText(e.target.value.toLowerCase())
       pkmnBuscando = e.target.value.toLowerCase();
-      console.log(inputText)
+      //console.log(inputText)
   };
 
   //Request de info
@@ -81,7 +81,7 @@ function Generacion(){
         .then((res) => {
             simpleData.push(res)
             let data = res
-            console.log(data.results)
+            //console.log(data.results)
             //setLoadingDash(false)
             return data
             //console.log(detailData)
@@ -128,7 +128,7 @@ function Generacion(){
     setTimeout(() => {
       setDetailData(detailData.concat(paginate(simpleData[0].results, 21, page)))
       setLoading(false)
-      console.log('time out')
+      //console.log('time out')
     }, 500)
 
   }

@@ -85,7 +85,7 @@ function isMithLeng(pkmn){
   }
 }
 
-const PresenterDashboard = ({pokemonResult, pkmnDetail , error, loading, imagen}) =>
+const PresenterDashboard = ({pokemonResult, pkmnDetail , error, loading, imagen, navigate}) =>
 
   loading ? (<Load />) : (
   <motion.div style={{ opacity:0}} animate={{opacity:1}} transition={{duration:1}}>
@@ -96,7 +96,7 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail , error, loading, imagen}
       <Container>
         <Toolbar disableGutters>
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-          <IconButton href={`/generacion/${pkmnDetail['generation']['name'].replace('generation-','').length}`} sx={{ml:-3}}>
+          <IconButton onClick={() => navigate(-1)} sx={{ml:-3}}>
             <ArrowBackIosNewOutlinedIcon sx={{color:'white'}} />
           </IconButton>
           <Typography color='white' variant='h5' sx={{ml:2, fontWeight:'Bold', mt:0.5}}>

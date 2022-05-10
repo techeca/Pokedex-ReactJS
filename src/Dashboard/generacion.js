@@ -17,7 +17,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import CircularProgress from '@mui/material/CircularProgress';
 import { motion, useAnimation, useViewportScroll, LazyMotion, domAnimation, m } from "framer-motion";
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 import MiniCardPokemon from './miniCardPokemon';
 const defaultTheme = createTheme({
@@ -65,7 +65,7 @@ function Generacion(){
   const inputHandler = (e) => {
       setInputText(e.target.value.toLowerCase())
       pkmnBuscando = e.target.value.toLowerCase();
-      console.log(inputText)
+      //console.log(inputText)
   };
 
   //Request de info
@@ -73,7 +73,7 @@ function Generacion(){
     let tempLimite = ''
     if(idgen === '1'){tempLimite = 'limit=151'}
     if(idgen === '2'){tempLimite = 'limit=100&offset=151'}
-    if(idgen === '3'){tempLimite = 'limit=134&offset=252'}
+    if(idgen === '3'){tempLimite = 'limit=134&offset=251'}
     if(idgen === '4'){tempLimite = 'limit=107&offset=386'}
     if(idgen === '5'){tempLimite = 'limit=154&offset=494'}
     if(idgen === '6'){tempLimite = 'limit=72&offset=649'}
@@ -132,9 +132,8 @@ function Generacion(){
     setTimeout(() => {
       setDetailData(detailData.concat(paginate(simpleData[0].results, 21, page)))
       setLoading(false)
-      console.log('time out')
+      //console.log('time out')
     }, 500)
-
   }
 
   const loadFeatures = import("../features.js")
@@ -239,10 +238,10 @@ function Generacion(){
       </>
       )
     }else {
-      //console.log(simpleData)
+
       return(
         <InfiniteScroll dataLength={detailData.length}
-          style={{ }}
+          style={{overflow:'hidden'}}
           next={() => fetchMoreData(page)} hasMore={true}
           loader={<></>}>
           <motion.div initial='hidden' animate='show' variants={container}>
@@ -271,15 +270,17 @@ function Generacion(){
                 <Container>
                   <Toolbar disableGutters>
                   <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                  <motion.div style={{opacity:0, width:'7%', height:'7%'}} animate={{opacity:1}}
-                    transition={{ ease: "easeOut", duration: 1 }}>
+                  <motion.div style={{opacity:0}} animate={{opacity:1, rotate:360}}
+                    transition={{ duration: 1 }}>
                     <Avatar src={Poke} sx={{}}/>
                   </motion.div>
                   <motion.div style={{opacity:0}} animate={{opacity:1}}
                     transition={{ ease: "easeOut", duration: 1 }}>
-                    <Typography variant='h5' sx={{ml:3, mt:0.5,fontWeight:'900', fontSize:'1.5rem'}}>
+                    <Link style={{ textDecoration: 'none' }} to={`/pokeApp`}>
+                    <Typography variant='h5' sx={{ml:3, mt:0.5, fontWeight:'900', fontSize:'1.5rem', color:'text.primary'}}>
                      Pokedex
                     </Typography>
+                    </Link >
                     </motion.div>
                   </Box>
                   <Box sx={{flexGrow:0}}>

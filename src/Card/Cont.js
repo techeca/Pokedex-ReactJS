@@ -6,7 +6,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import PresenterCard from './PresenterCard';
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 function Cont ({match}) {
   const [data, setData] = useState([]);
@@ -19,6 +19,7 @@ function Cont ({match}) {
   const [theme, setTheme] = useState();
   const { idpkmn } = useParams();
   const [imgPkmn, setImgPkmn] = useState([]);
+  const navigate = useNavigate();
 
   function fetchInventory() {
     return fetch(`https://pokeapi.co/api/v2/pokemon/${idpkmn}`)
@@ -60,7 +61,7 @@ function Cont ({match}) {
 
   return(
 
-    <PresenterCard pokemonResult={data} pkmnDetail={data2} error={error} loading={loading} imagen={imgPkmn} />
+    <PresenterCard pokemonResult={data} pkmnDetail={data2} error={error} loading={loading} imagen={imgPkmn} navigate={navigate} />
   )
 }
 
