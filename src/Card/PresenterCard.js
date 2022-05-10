@@ -88,7 +88,7 @@ function isMithLeng(pkmn){
 const PresenterDashboard = ({pokemonResult, pkmnDetail , error, loading, imagen}) =>
 
   loading ? (<Load />) : (
-  <>
+  <motion.div style={{ opacity:0}} animate={{opacity:1}} transition={{duration:1}}>
   <ThemeProvider theme={changeTheme(pokemonResult['types'][0].type.name)}>
   <CssBaseline>
     <Container maxWidth='lg' sx={{width:'100%', height:'100vh'}}>
@@ -96,7 +96,7 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail , error, loading, imagen}
       <Container>
         <Toolbar disableGutters>
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-          <IconButton href='/generacion' sx={{ml:-3}}>
+          <IconButton href={`/generacion/${pkmnDetail['generation']['name'].replace('generation-','').length}`} sx={{ml:-3}}>
             <ArrowBackIosNewOutlinedIcon sx={{color:'white'}} />
           </IconButton>
           <Typography color='white' variant='h5' sx={{ml:2, fontWeight:'Bold', mt:0.5}}>
@@ -137,7 +137,7 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail , error, loading, imagen}
 
         <Box sx={{mt:'-70%', mb:'-15%', mx:'auto', display:'flex', flexwrap: 'nowrap', justifyContent:'center'}}>
 
-        <motion.div style={{ y:150, opacity:0 }} animate={{y:0, opacity:0.99}} transition={{duration:1}}>
+        <motion.div style={{ y:150, opacity:0, width:'90%'}} animate={{y:0, opacity:0.99}} transition={{duration:1}}>
             <img src={imagen} width='90%' height='auto' />
           </motion.div>
 
@@ -367,7 +367,7 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail , error, loading, imagen}
     </Container>
     </CssBaseline>
   </ThemeProvider>
-  </>
+  </motion.div>
   );
 
 export default PresenterDashboard;

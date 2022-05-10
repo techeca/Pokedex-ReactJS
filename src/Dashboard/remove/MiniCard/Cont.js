@@ -8,7 +8,7 @@ import CardMedia from '@mui/material/CardMedia';
 import PresenterCard from './PresenterCard';
 import { useParams } from 'react-router-dom'
 
-function Cont ({match}) {
+function Cont (p) {
   const [data, setData] = useState([]);
   const strtest = JSON.stringify(data);
   const objtest = JSON.parse(strtest);
@@ -19,15 +19,11 @@ function Cont ({match}) {
   const [theme, setTheme] = useState();
   const { idpkmn } = useParams();
   const [imgPkmn, setImgPkmn] = useState([]);
+  const pkmn = p.p
 
   function fetchInventory() {
-    return fetch(`https://pokeapi.co/api/v2/pokemon/${idpkmn}`)
+    return fetch(`https://pokeapi.co/api/v2/pokemon/${pkmn.url}`)
     .then(data => data.json())
-  }
-
-  function fetchDetails() {
-    return fetch(`https://pokeapi.co/api/v2/pokemon-species/${idpkmn}`)
-      .then(data => data.json())
   }
 
   useEffect(() => {
@@ -40,23 +36,15 @@ function Cont ({match}) {
           setData(items)
           setImgPkmn(items['sprites']['other']['official-artwork']['front_default'])
           load1 = false;
-          if(!load2){setLoading(false)}
-
+          setLoading(false);
         }
       })
 
-      fetchDetails()
-      .then(items => {
-        if({mounted}) {
-          setData2(items)
-          load2 = false;
-          if(!load1){setLoading(false)}
 
-        }
-      })
-      
       return () => mounted = false;
   }, [])
+
+
 
   return(
 

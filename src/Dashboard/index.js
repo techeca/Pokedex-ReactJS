@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
@@ -17,9 +16,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import CircularProgress from '@mui/material/CircularProgress';
 import { motion, useAnimation, useViewportScroll, LazyMotion, domAnimation, m } from "framer-motion";
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useParams } from 'react-router-dom'
-
 import MiniCardPokemon from './miniCardPokemon';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
+import ButtonGeneration from './buttonGeneration.js'
+
 const defaultTheme = createTheme({
     palette: {
       mode: 'light',
@@ -28,6 +31,9 @@ const defaultTheme = createTheme({
       },
       secondary: {
         main: '#e0e0e0',
+      },
+      text: {
+      primary: 'rgba(0,0,0,0.87)',
       },
       background: {
         default: '#f7f7f7',
@@ -59,7 +65,6 @@ function Generacion(){
   const [error, setError] = useState('')
   const [inputText, setInputText] = useState('')
   const [page, setPage] = useState(1);
-  const { idgen } = useParams();
   let pkmnBuscando = '';
 
   const inputHandler = (e) => {
@@ -70,22 +75,13 @@ function Generacion(){
 
   //Request de info
   const getSimpleData = async () => {
-    let tempLimite = ''
-    if(idgen === '1'){tempLimite = 'limit=151'}
-    if(idgen === '2'){tempLimite = 'limit=100&offset=151'}
-    if(idgen === '3'){tempLimite = 'limit=134&offset=252'}
-    if(idgen === '4'){tempLimite = 'limit=107&offset=386'}
-    if(idgen === '5'){tempLimite = 'limit=154&offset=494'}
-    if(idgen === '6'){tempLimite = 'limit=72&offset=649'}
-    if(idgen === '7'){tempLimite = 'limit=88&offset=721'}
-    if(idgen === '8'){tempLimite = 'limit=89&offset=809'}
     if(simpleData.length === 0){
-      return fetch(`https://pokeapi.co/api/v2/pokemon/?${tempLimite}`)
+      return fetch(`https://pokeapi.co/api/v2/generation/`)
       .then((res) => res.json())
         .then((res) => {
             simpleData.push(res)
             let data = res
-            //console.log(data.results)
+            console.log(data.results)
             //setLoadingDash(false)
             return data
             //console.log(detailData)
@@ -239,7 +235,7 @@ function Generacion(){
       </>
       )
     }else {
-      //console.log(simpleData)
+
       return(
         <InfiniteScroll dataLength={detailData.length}
           style={{ }}
@@ -247,7 +243,7 @@ function Generacion(){
           loader={<></>}>
           <motion.div initial='hidden' animate='show' variants={container}>
             {detailData.map((x, i) =>
-                 <Box sx={{maxWidth:'30%'}} key={i}>
+                 <Box sx={{maxWidth:'30%'}}>
                    <MiniCardPokemon p={x} />
                  </Box>
               )}
@@ -278,26 +274,27 @@ function Generacion(){
                   <motion.div style={{opacity:0}} animate={{opacity:1}}
                     transition={{ ease: "easeOut", duration: 1 }}>
                     <Typography variant='h5' sx={{ml:3, mt:0.5,fontWeight:'900', fontSize:'1.5rem'}}>
-                     Pokedex
+                     PokeApp
                     </Typography>
                     </motion.div>
-                  </Box>
-                  <Box sx={{flexGrow:0}}>
-                      <IconButton>
-                        <FilterListIcon />
-                      </IconButton>
                   </Box>
                   </Toolbar>
                 </Container>
               </AppBar>
               <motion.div style={{opacity:0}} animate={{opacity:1}} transition={{ ease: "easeOut", duration: 1 }}>
-              {SearchTest()}
+
               </motion.div>
               <Box sx={{maxWidth:'95%', mb:2, mx:'auto', display:'flex', justifyContent:'flex-start'}}>
 
               </Box>
                   <Box sx={{display:'flex', justifyContent: 'center', flexWrap:'wrap'}}>
-                  {loadDashboard()}
+                    <Paper sx={{height:'90%', width:'90%', p:3}} variant='outlined'>
+
+                      {simpleData[0].results.map((generation, i) =>
+                        {return <ButtonGeneration key={i} g={generation} />}
+                      )}
+
+                    </Paper>
                   </Box>
             </Container>
             </ThemeProvider>

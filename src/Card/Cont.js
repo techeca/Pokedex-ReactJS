@@ -41,6 +41,7 @@ function Cont ({match}) {
           setImgPkmn(items['sprites']['other']['official-artwork']['front_default'])
           load1 = false;
           if(!load2){setLoading(false)}
+          window.scrollTo(0,0)
 
         }
       })
@@ -51,16 +52,15 @@ function Cont ({match}) {
           setData2(items)
           load2 = false;
           if(!load1){setLoading(false)}
-
         }
       })
-      
+
       return () => mounted = false;
   }, [])
 
   return(
 
-    <PresenterCard pokemonResult={data} pkmnDetail={data2} error={error} loading={loading} imagen={imgPkmn}   />
+    <PresenterCard pokemonResult={data} pkmnDetail={data2} error={error} loading={loading} imagen={imgPkmn} />
   )
 }
 

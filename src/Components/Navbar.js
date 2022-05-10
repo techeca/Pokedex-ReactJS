@@ -2,6 +2,7 @@ import React from 'react';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import { Routes, Route, useParams } from 'react-router-dom';
 import Dashboard from '../Dashboard/generacion'
+import PokeApp from '../Dashboard/'
 import ContainerCard from '../Card/Cont'
 import Intro from '../intro.js';
 
@@ -36,8 +37,8 @@ const Navbar = () => {
     <ThemeProvider theme={lightTheme}>
         <Routes>
           <Route exact path='/' element={<Intro />} />
-          <Route exact path='/pokeApp' element={<Dashboard/>} />
-          <Route exact path='/generacion' element={<Dashboard/>} />
+          <Route exact path='/pokeApp' element={<PokeApp/>} />
+          <Route exact path='/generacion/:idgen' element={<Dashboard/>} />
           <Route exact path='/pokemon/:idpkmn' element={<ContainerCard />} />
         </Routes>
     </ThemeProvider>

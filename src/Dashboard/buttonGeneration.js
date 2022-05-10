@@ -22,6 +22,8 @@ import placeholderSrc from '../placeholderSrc.png'
 import LazyLoad from 'react-lazyload';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { motion, useAnimation, LazyMotion, domAnimation, m } from "framer-motion";
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 const list = {
   visible: { opacity: 1 },
@@ -65,11 +67,11 @@ const defaultTheme = createTheme({
   },
 });
 
-export default function MiniCardPokemon(p){
+export default function ButtonGeneration(g){
   const [simpleData, setSimpleData] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
-  const pkmn = p.p
+  const generation = g.g
   const controls = useAnimation();
   const [ref, inView] = useInView();
   const variants = {
@@ -78,11 +80,9 @@ export default function MiniCardPokemon(p){
 }
   //style={{ y:150, opacity:0 }} animate={{y:0, opacity:0.99}} transition={{duration:1}}
 
-
-
 const getData = async () => {
     if(simpleData.length === 0){
-      return fetch(pkmn.url)
+      return fetch(generation.url)
       .then((res) => res.json())
         .then((res) => {
           //console.log(res)
@@ -120,30 +120,18 @@ const getData = async () => {
       </Box>
       :
       <motion.div variants={item} initial="hidden" animate={controls} ref={ref}>
-    <ThemeProvider theme={changeTheme(simpleData['types']['0']['type']['name'])}>
-    <Card elevation={0} sx={{maxWidth:'100%', m:0.5, border:2, borderColor:'primary.main'}} style={{borderRadius: '10px'}} key={pkmn.id}>
-      <CardActionArea >
-      <Link style={{ textDecoration: 'none' }} to={`/pokemon/${simpleData.id}`}>
-        <Typography color='primary' component='div' sx={{display:'flex', flexDirection:'row-reverse', mr:1, mt:0.5, fontSize:12}}>
-          {setZero(simpleData.id)}
-        </Typography>
-
-        {<ProgressiveImg src={simpleData['sprites']['other']['official-artwork']['front_default']} placeholderSrc={placeholderSrc} />}
-
-        <Box color='primary'>
-          <CardContent sx={{p:1, borderColor:'primary.main', bgcolor:'primary.main'}} >
-            <Typography color='white' component='div' sx={{mt:0, mb:-3, fontSize:14}}>
-              {capitalize(simpleData.name)}
-            </Typography>
-          </CardContent>
-        </Box>
+      <Paper variant='outlined' sx={{mt:2}}>
+        <Link style={{ textDecoration: 'none' }} to={`/generacion/${simpleData.id}`}>
+          <Box sx={{display:'flex', p:3, justifyContent:'space-between'}}>
+          <Typography variant={'h5'} sx={{color:'text.primary', fontSize:'1.30em'}}>
+            {simpleData.names.map((name) => {if(name.language.name === 'en'){return name.name}})}
+          </Typography>
+          <Typography  sx={{color:'text.primary', textAlign:'center'}}>
+            {capitalize(simpleData['main_region'].name)}
+          </Typography>
+          </Box>
         </Link>
-      </CardActionArea>
-    </Card>
-    </ThemeProvider>
-    </motion.div >
-
-
+      </Paper>
+      </motion.div >
   )
-
 };
