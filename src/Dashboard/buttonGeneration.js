@@ -72,6 +72,19 @@ const styles = {
     }
 };
 
+function setImgStyle(region){
+  let tempRegion = capitalize(region)
+  console.log(region)
+
+  const styles = {
+      paperContainer: {
+          backgroundImage: `url(${tempRegion})`
+      }
+  }
+
+  return styles.paperContainer
+}
+
 export default function ButtonGeneration(g){
   const [simpleData, setSimpleData] = useState('')
   const [error, setError] = useState('')
@@ -123,11 +136,12 @@ export default function ButtonGeneration(g){
       </Box>
       :
       <motion.div variants={item} initial="hidden" animate={controls} ref={ref}>
-      <Paper variant='outlined' sx={{mt:2}} style={styles.paperContainer}>
+      <Paper variant='outlined' sx={{mt:2}} style={setImgStyle(simpleData['main_region'].name)}>
         <Link style={{ textDecoration: 'none' }} to={`/generacion/${simpleData.id}`}>
           <Box sx={{display:'flex', p:3, justifyContent:'space-between'}}>
           <Typography variant={'h5'} sx={{color:'text.primary', fontSize:'1.30em'}}>
             {simpleData.names.map((name) => {if(name.language.name === 'en'){return name.name}})}
+
           </Typography>
           <Typography sx={{color:'text.primary', textAlign:'center'}}>
             {capitalize(simpleData['main_region'].name)}

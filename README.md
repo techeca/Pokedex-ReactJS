@@ -7,11 +7,13 @@ Puedes ver:\
 -Generaciones\
 -Pokemon(detalles)\
 
-Para comenzar:
+Para pruebas:
 
-### `git clone https://github.com/techeca/Pokedex-ReactJS.git`
-### `npm i`
-### `npm start`
+```bash
+git clone https://github.com/techeca/Pokedex-ReactJS.git
+npm i
+npm start
+```
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
