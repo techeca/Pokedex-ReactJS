@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { Link, HashRouter  } from 'react-router-dom';
 
 function Intro() {
   return (
@@ -7,16 +8,9 @@ function Intro() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Proyecto realizado en ReactJS.
+          Proyecto realizado con ReactJS, PokeAPI y MUI.
         </p>
-        <a
-          className="App-link"
-          href="/pokeApp"
-          target="_self"
-          rel="noopener noreferrer"
-        >
-          Entrar
-        </a>
+          <Link to="/pokeApp">Entrar</Link>
       </header>
     </div>
   );

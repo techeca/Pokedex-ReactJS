@@ -1,13 +1,15 @@
 # PokeApp
 
 En este proyecto se consume la API de [PokeAPI](https://pokeapi.co/)\
-**Note: Por el momento solo esta adaptado para móviles!**
+**Note: Por el momento solo esta adaptado para móviles! (UI)**
 
 Puedes ver:\
 -Generaciones\
 -Pokemon(detalles)\
 
-Para pruebas:
+DEMO: https://techeca.github.io/Pokedex-ReactJS/pokeApp
+
+Para pruebas locales:
 
 ```bash
 git clone https://github.com/techeca/Pokedex-ReactJS.git
@@ -31,7 +33,8 @@ Agregar más categorias disponibles en API.\
 Arreglar origen descripciones.\
 Arreglar search (generacion).\
 Arreglar backButton en pokemon(details).\
-Agregar Moves por pokemon.
+Agregar Moves por pokemon.\
+Agregar filtro por typo en generacion.
 
 ## Imagenes
 

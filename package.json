@@ -2,7 +2,7 @@
   "name": "newpokedex",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://techeca.github.io",
+  "homepage": "https://techeca.github.io/Pokedex-ReactJS",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -13,7 +13,6 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "framer-motion": "^6.3.3",
-    "gh-pages": "^4.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-graceful-image": "^1.5.0",
@@ -26,12 +25,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -50,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
