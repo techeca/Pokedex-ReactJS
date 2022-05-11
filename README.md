@@ -1,6 +1,6 @@
 # PokeApp
 
-En este proyecto se consume la API de [PokeAPI](https://pokeapi.co/)\
+Plataforma para el consumo de la API [PokeAPI](https://pokeapi.co/)\
 
 Puedes ver:\
 -Generaciones\
@@ -27,7 +27,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## TODO
 
-Adaptar para navegadores.\
 Agregar más categorias disponibles en API.\
 Arreglar origen descripciones.\
 Arreglar search (generacion).\
@@ -35,7 +34,9 @@ Arreglar backButton en pokemon(details).\
 Agregar Moves por pokemon.\
 Agregar filtro por typo en generacion.\
 Agregar dark mode.\
-Spread simpleData con detailData.
+Spread simpleData con detailData.\
+Arreglar Loading.
+
 
 ## Imagenes
 
