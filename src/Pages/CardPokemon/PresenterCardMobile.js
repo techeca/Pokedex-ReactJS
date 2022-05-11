@@ -35,16 +35,15 @@ function isMithLeng(pkmn){
 const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigate}) =>
 
   loading ? (<Load />) : (
-  <Box sx={{display:{md:'none'}}}>
-  <motion.div style={{ opacity:0, width:'100%', height:'100%', overflow:'hidden'}} animate={{opacity:1}} transition={{duration:1}}>
-  <ThemeProvider theme={changeTheme(pokemonResult['types'][0].type.name)} >
-  <CssBaseline>
-    <Container  sx={{width:'100%', height:'100%'}} >
-    <AppBar elevation={0} position='static' sx={{border:0, mt:2}} >
-
+  <motion.div style={{ opacity:0, overflow:'hidden'}} animate={{opacity:1}} transition={{duration:1}}>
+  <ThemeProvider theme={changeTheme(pokemonResult['types'][0].type.name)}>
+  <CssBaseline >
+    <Container  maxWidth='lg' sx={{width:'100%', height:'100%'}}>
+    <AppBar elevation={0} position='static' sx={{border:0, mt:2}}>
+      <Container>
         <Toolbar disableGutters>
-        <Box sx={{ flexGrow: 1, display: { xs: 'flex' } }}>
-          <IconButton onClick={() => navigate(-1)} sx={{ml:-15}}>
+        <Box  sx={{ flexGrow: 1, display: { xs: 'flex' } }}>
+          <IconButton onClick={() => navigate(-1)} sx={{ml:-3}}>
             <ArrowBackIosNewOutlinedIcon sx={{color:'white'}} />
           </IconButton>
           <Typography color='white' variant='h5' sx={{ml:2, fontWeight:'Bold', mt:0.5}}>
@@ -64,37 +63,41 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigat
           </Box>
         </Box>
 
-        <Box sx={{width:'100%', height:'100%',display:'flex', flexWrap:'nowrap', justifyContent:''}}>
-            <Box sx={{display:'flex', mt:'40%', ml:-20, mr:5, flexWrap:'', width:'10%', height:'10%'}}>
+        <Box sx={{width:'100%', display:'flex', flexWrap:'nowrap', justifyContent:''}}>
+            <Box sx={{display:'flex', mt:'50%', ml:-3, flexWrap:'', width:'10%', height:'10%'}}>
               <IconButton href={pokemonResult.id === 1 ? `./151` : `./${pokemonResult.id-1}`} sx={{}}>
                 <ArrowBackIosIcon sx={{color:'white'}} />
               </IconButton>
             </Box>
 
-            <Box sx={{width:'60%', height:'100%', mt:'6%', mr:0}}>
-              <Avatar src={PokeTrans} sx={{opacity:0.4, width:'100%', height:'100%'}} />
+            <Box sx={{display:'flex' ,justifyContent:'', flexWrap:'', pb:-10, width:'100%'}}>
+              <Avatar src={PokeTrans} sx={{mt:-5, opacity:0.2, width:'100%', height:'auto'}} />
             </Box>
 
-            <Box sx={{display:'flex', mt:'40%', ml:10, flexWrap:'', width:'10%', height:'10%'}}>
+            <Box sx={{display:{lg:'none'}, mt:'50%', mr:-3, flexWrap:'', width:'10%', height:'10%'}}>
               <IconButton href={`./${pokemonResult.id+1}`} sx={{}}>
                 <ArrowForwardIosIcon sx={{color:'white'}} />
               </IconButton>
             </Box>
         </Box>
 
-        <Box sx={{mt:'-50%', ml:10, display:'flex', flexWrap:'nowrap'}} >
 
-          <motion.div style={{ y:150, opacity:0, width:'100%', height:'73vh'}} animate={{y:0, opacity:0.99}} transition={{duration:1}}>
-              <Box sx={{mt:5}}>
-              <img alt={pokemonResult.name} src={imagen} width='80%' height='80%'/>
+
+        <Box >
+          <Box sx={{mt:'-70%', mb:'-15%', mx:'auto', display:'flex', flexwrap: 'nowrap', justifyContent:'center'}}>
+
+          <motion.div style={{ y:150, opacity:0, width:'90%'}} animate={{y:0, opacity:0.99}} transition={{duration:1}}>
+              <Box sx={{}}>
+              <img alt={pokemonResult.name} src={imagen} width='90%' height='auto'/>
               </Box>
           </motion.div>
 
-          <Box sx={{width:'100%', height:'100%', mt:20}}>
+          </Box>
+          <Box sx={{width:'100%', height:'auto'}}>
           <Slide direction='up' in={true} timeout={0}>
-            <Paper elevation={0} sx={{border:1, m:-25, borderRadius:'10px', borderColor:`primary.main`, ml:'40%'}}>
+            <Paper elevation={0} sx={{border:1, m:-3, borderRadius:'10px', borderColor:`primary.main`, mb:1}}>
 
-              <Box sx={{mt:'3%', display:'flex', justifyContent:'center', mb:'3%'}}>
+              <Box sx={{mt:'10%', display:'flex', justifyContent:'center'}}>
                 {isBabyPkmn(pkmnDetail)}
                 {pokemonResult['types'].map((type) =>
                 <ThemeProvider key={type.type.name} theme={changeTheme(type['type']['name'])}>
@@ -288,16 +291,15 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigat
             </Paper>
           </Slide>
           </Box>
-
         </Box>
 
-    </AppBar>
 
+      </Container>
+    </AppBar>
     </Container>
     </CssBaseline>
   </ThemeProvider>
   </motion.div>
-  </Box>
   );
 
 export default PresenterDashboard;

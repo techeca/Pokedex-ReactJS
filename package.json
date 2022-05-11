@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "framer-motion": "^6.3.3",
     "react": "^18.1.0",
+    "react-device-detect": "^2.2.2",
     "react-dom": "^18.1.0",
     "react-graceful-image": "^1.5.0",
     "react-infinite-scroll-component": "^6.1.0",

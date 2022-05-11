@@ -35,7 +35,6 @@ function isMithLeng(pkmn){
 const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigate}) =>
 
   loading ? (<Load />) : (
-  <Box sx={{display:{md:'none'}}}>
   <motion.div style={{ opacity:0, width:'100%', height:'100%', overflow:'hidden'}} animate={{opacity:1}} transition={{duration:1}}>
   <ThemeProvider theme={changeTheme(pokemonResult['types'][0].type.name)} >
   <CssBaseline>
@@ -64,8 +63,8 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigat
           </Box>
         </Box>
 
-        <Box sx={{width:'100%', height:'100%',display:'flex', flexWrap:'nowrap', justifyContent:''}}>
-            <Box sx={{display:'flex', mt:'40%', ml:-20, mr:5, flexWrap:'', width:'10%', height:'10%'}}>
+        <Box sx={{width:'100%', height:'100%',display:'flex', flexWrap:'nowrap', justifyContent:'center'}}>
+            <Box sx={{display:'flex', mt:'40%', ml:-35, mr:5, flexWrap:'', width:'10%', height:'10%'}}>
               <IconButton href={pokemonResult.id === 1 ? `./151` : `./${pokemonResult.id-1}`} sx={{}}>
                 <ArrowBackIosIcon sx={{color:'white'}} />
               </IconButton>
@@ -82,17 +81,18 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigat
             </Box>
         </Box>
 
-        <Box sx={{mt:'-50%', ml:10, display:'flex', flexWrap:'nowrap'}} >
+        <Box sx={{mt:'-50%', display:'flex', flexWrap:'nowrap', mr:5}} >
 
-          <motion.div style={{ y:150, opacity:0, width:'100%', height:'73vh'}} animate={{y:0, opacity:0.99}} transition={{duration:1}}>
-              <Box sx={{mt:5}}>
+          <motion.div style={{ y:150, opacity:0, width:'100%', height:'70vh'}} animate={{y:0, opacity:0.99}} transition={{duration:1}}>
+              <Box sx={{mt:0}}>
               <img alt={pokemonResult.name} src={imagen} width='80%' height='80%'/>
               </Box>
           </motion.div>
 
-          <Box sx={{width:'100%', height:'100%', mt:20}}>
+          <motion.div style={{scale: 0}} animate={{ scale: 1 }} transition={{ duration: 1 }}>
+          <Box sx={{width:'100%', height:'100%', mt:38}}>
           <Slide direction='up' in={true} timeout={0}>
-            <Paper elevation={0} sx={{border:1, m:-25, borderRadius:'10px', borderColor:`primary.main`, ml:'40%'}}>
+            <Paper elevation={0} sx={{border:1, m:-40, borderRadius:'10px', borderColor:`primary.main`, ml:'30%'}}>
 
               <Box sx={{mt:'3%', display:'flex', justifyContent:'center', mb:'3%'}}>
                 {isBabyPkmn(pkmnDetail)}
@@ -288,6 +288,7 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigat
             </Paper>
           </Slide>
           </Box>
+          </motion.div>
 
         </Box>
 
@@ -297,7 +298,6 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigat
     </CssBaseline>
   </ThemeProvider>
   </motion.div>
-  </Box>
   );
 
 export default PresenterDashboard;
