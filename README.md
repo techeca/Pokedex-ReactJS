@@ -1,13 +1,13 @@
 # PokeApp
 
 En este proyecto se consume la API de [PokeAPI](https://pokeapi.co/)\
-**Note: Por el momento solo esta adaptado para móviles! (UI)**
+**Nota: Por el momento solo está adaptado para móviles! (UI)**
 
 Puedes ver:\
 -Generaciones\
 -Pokemon(detalles)\
 
-DEMO: https://techeca.github.io/Pokedex-ReactJS/pokeApp
+DEMO: https://techeca.github.io/Pokedex-ReactJS
 
 Para pruebas locales:
 
