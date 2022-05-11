@@ -1,9 +1,9 @@
 import React from 'react';
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-import { Routes, Route, useParams, BrowserRouter } from 'react-router-dom';
-import Dashboard from '../Dashboard/generacion'
-import PokeApp from '../Dashboard/'
-import ContainerCard from '../Card/Cont'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import Dashboard from 'Pages/Generacion/'
+import PokeApp from 'Pages/Dashboard/'
+import ContainerCard from 'Pages/CardPokemon/'
 import Intro from '../intro.js';
 
 const lightTheme = createTheme({
@@ -22,7 +22,6 @@ const lightTheme = createTheme({
     },
   },
 });
-
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -40,7 +39,7 @@ const Navbar = () => {
           <Route exact path='/' element={<Intro />} />
           <Route exact path='/pokeApp' element={<PokeApp/>} />
           <Route exact path='/generacion/:idgen' element={<Dashboard/>} />
-          <Route exact path='/pokemon/:idpkmn' element={<ContainerCard />} />
+          <Route exact path='/pokemon/:idpkmn' element={<ContainerCard/>} />
         </Routes>
     </BrowserRouter>
     </ThemeProvider>

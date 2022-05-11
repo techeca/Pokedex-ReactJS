@@ -1,81 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import Container from '@mui/material/Container';
-import Paper from '@mui/material/Paper';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import PokeTrans from '../poketransw.png';
-import Chip from '@mui/material/Chip';
-import Grid from '@mui/material/Grid';
-import Divider from '@mui/material/Divider';
-import MonitorWeightOutlinedIcon from '@mui/icons-material/MonitorWeightOutlined';
-import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import {capitalize, replaceChar, changeTheme, setZero} from '../utils.js';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import Load from '../Components/Load.js';
-import Fade from '@mui/material/Fade';
-import Slide from '@mui/material/Slide';
-import { motion, useAnimation } from "framer-motion";
-
-const list = {
-  visible: {
-    style: {
-      y:200
-    },
-    opacity: 1,
-    animate: {
-      y: 0
-    },
-    transition: {
-      duration: 0.8,
-      when: "beforeChildren",
-      staggerChildren: 0.3,
-    },
-  },
-  hidden: {
-    opacity: 0,
-    transition: {
-      when: "afterChildren",
-    },
-  },
-}
+import {Container, Paper, AppBar, Toolbar, Box, Typography, Avatar, IconButton, Chip, Grid, Divider, ThemeProvider, CssBaseline, Slide} from '@mui/material'
+import MonitorWeightOutlinedIcon from '@mui/icons-material/MonitorWeightOutlined'
+import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import {capitalize, replaceChar, changeTheme, setZero} from 'utils.js'
+import { motion } from "framer-motion"
+import PokeTrans from 'images/poketransw.png'
+import Load from 'Components/Load.js'
 
 function otherDetail(pkmnValue, dataName){
-  return(
-    <>
+  return(<>
     <Typography variant='' sx={{fontWeight:'medium'}}>
         {dataName}
     </Typography>
     <Typography sx={{fontSize:''}}>
         {pkmnValue}
     </Typography>
-    </>
-  )
+    </>)
 }
 
 function isBabyPkmn(pkmn){
-if(pkmn['is_baby']){
-  return(
-    <Chip variant='outlined' color='primary' sx={{m:0.8, height:'25px', color:'primary', fontWeight:'medium'}}
-      label='Baby'/>
-    )
-  }
-}
-
+if(pkmn['is_baby']){return(<Chip variant='outlined' color='primary' sx={{m:0.8, height:'25px', color:'primary', fontWeight:'medium'}} label='Baby'/>)}}
 function isMithLeng(pkmn){
-
-  if(pkmn['is_legendary']){
-    return (
-      <Chip variant='outlined' sx={{m:0.8, height:'25px', color:'black', fontWeight:'medium'}}
-        label='Legendary'/>
-    )
-  }
+  if(pkmn['is_legendary']){return (<Chip variant='outlined' sx={{m:0.8, height:'25px', color:'black', fontWeight:'medium'}} label='Legendary'/>)}
 
   if(pkmn['is_mythical']){
     return (
@@ -85,7 +32,7 @@ function isMithLeng(pkmn){
   }
 }
 
-const PresenterDashboard = ({pokemonResult, pkmnDetail , error, loading, imagen, navigate}) =>
+const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigate}) =>
 
   loading ? (<Load />) : (
   <motion.div style={{ opacity:0}} animate={{opacity:1}} transition={{duration:1}}>
@@ -95,7 +42,7 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail , error, loading, imagen,
     <AppBar elevation={0} position='static' sx={{border:0, mt:2}}>
       <Container>
         <Toolbar disableGutters>
-        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+        <Box sx={{ flexGrow: 1, display: { xs: 'flex' } }}>
           <IconButton onClick={() => navigate(-1)} sx={{ml:-3}}>
             <ArrowBackIosNewOutlinedIcon sx={{color:'white'}} />
           </IconButton>
@@ -109,7 +56,6 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail , error, loading, imagen,
         </Toolbar>
 
         <Box sx={{display:'flex', mb:-6}}>
-
           <Box sx={{border:1, color:'white' ,borderRadius:5, pl:1.3, pr:1.3, pt:0.5, pb:0.5, bgcolor:'text.primary'}}>
             <Typography variant='' sx={{fontSize:'0.80em'}}>
                 {capitalize(pkmnDetail['generation']['name'].replace('-', ' '))}
@@ -138,8 +84,11 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail , error, loading, imagen,
         <Box sx={{mt:'-70%', mb:'-15%', mx:'auto', display:'flex', flexwrap: 'nowrap', justifyContent:'center'}}>
 
         <motion.div style={{ y:150, opacity:0, width:'90%'}} animate={{y:0, opacity:0.99}} transition={{duration:1}}>
-            <img src={imagen} width='90%' height='auto' />
-          </motion.div>
+            <Box>
+            <img alt={pokemonResult.name} src={imagen} width='90%' height='auto'/>
+            </Box>
+
+        </motion.div>
 
         </Box>
       <Box sx={{width:'100%', height:'auto'}}>
@@ -340,26 +289,7 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail , error, loading, imagen,
           </Paper>
         </Slide>
         </Box>
-        <Box sx={{width:'100%', height:'auto'}}>
-          <Paper elevation={0} sx={{border:1, m:-3, borderRadius:'10px', borderColor:`primary.main`, mt:1, mb:1}}>
-            <Box sx={{border:0, m:3}}>
-              Moves
-              <Box>
 
-              </Box>
-                <Box sx={{display:'flex', justifyContent: 'space-around'}}>
-                  <Box sx={{border:0, textAlign:'justify', flexDirection:'column', maxWidth:'40%'}}>
-
-                  </Box>
-                  <Box sx={{border:1}}>
-
-                  </Box>
-                </Box>
-
-            </Box>
-
-          </Paper>
-        </Box>
 
       </Container>
     </AppBar>

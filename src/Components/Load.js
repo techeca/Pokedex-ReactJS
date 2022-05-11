@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 
 function Load(){
   return(
-    <Box sx={{height:'100vh',display:'flex', justifyContent:'center', mt:'65%'}}>
+    <Box sx={{height:'100%',display:'flex', justifyContent:'center', mt:'65%'}}>
       <div className="pokeball">
       </div>
     </Box>

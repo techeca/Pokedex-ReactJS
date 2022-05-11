@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import Poke from '../pokeball.png';
+import Poke from 'images/pokeball.png';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import Load from '../Components/Load.js';
 import { styled } from '@mui/material/styles';

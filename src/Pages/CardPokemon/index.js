@@ -1,35 +1,24 @@
-import React, { useState, useEffect} from 'react';
-import Container from '@mui/material/Container';
-import Paper from '@mui/material/Paper';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+import React, { useState, useEffect, useCallback} from 'react';
 import PresenterCard from './PresenterCard';
 import { useParams, useNavigate } from 'react-router-dom'
 
 function Cont ({match}) {
   const [data, setData] = useState([]);
-  const strtest = JSON.stringify(data);
-  const objtest = JSON.parse(strtest);
-  const sprites = objtest['sprites'];
   const [data2, setData2] = useState([]);
-  const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
-  const [theme, setTheme] = useState();
   const { idpkmn } = useParams();
   const [imgPkmn, setImgPkmn] = useState([]);
   const navigate = useNavigate();
 
-  function fetchInventory() {
+  const fetchInventory = useCallback(() => {
     return fetch(`https://pokeapi.co/api/v2/pokemon/${idpkmn}`)
     .then(data => data.json())
-  }
+  }, [idpkmn])
 
-  function fetchDetails() {
+  const fetchDetails = useCallback(() => {
     return fetch(`https://pokeapi.co/api/v2/pokemon-species/${idpkmn}`)
       .then(data => data.json())
-  }
+  }, [idpkmn])
 
   useEffect(() => {
     let mounted = true;
@@ -57,11 +46,11 @@ function Cont ({match}) {
       })
 
       return () => mounted = false;
-  }, [])
+  }, [fetchDetails, fetchInventory])
 
   return(
 
-    <PresenterCard pokemonResult={data} pkmnDetail={data2} error={error} loading={loading} imagen={imgPkmn} navigate={navigate} />
+    <PresenterCard pokemonResult={data} pkmnDetail={data2} loading={loading} imagen={imgPkmn} navigate={navigate} />
   )
 }
 

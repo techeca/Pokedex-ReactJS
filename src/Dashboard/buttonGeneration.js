@@ -135,16 +135,8 @@ export default function ButtonGeneration(g){
   }, [controls, inView])
 
   const item = {
-  hidden: {
-    opacity: 0,
-    y: 50,
-    transition: { ease: [0.78, 0.14, 0.15, 0.86] }
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { ease: [0.78, 0.14, 0.15, 0.86] }
-  }
+  hidden: {opacity: 0, y: 50, transition: { ease: [0.78, 0.14, 0.15, 0.86] }},
+  show: {opacity: 1, y: 0, transition: { ease: [0.78, 0.14, 0.15, 0.86] }}
 };
 
   return(

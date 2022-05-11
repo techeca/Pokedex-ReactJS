@@ -1,4 +1,13 @@
 import { createTheme } from '@mui/material/styles';
+
+import Kanto from 'images/starters/kanto.png'
+import Johto from 'images/starters/johto.png'
+import Hoenn from 'images/starters/hoenn.png'
+import Sinnoh from 'images/starters/sinnoh.png'
+import Unova from 'images/starters/unova.png'
+import Alola from 'images/starters/alola.png'
+import Galar from 'images/starters/galar.png'
+import Kalos from 'images/starters/kalos.png'
 import "@fontsource/poppins"
 //Funciones Re-utilizables
 
@@ -27,10 +36,48 @@ export function checkType(type){
   }
 }
 
+export function getPkmnGen(idgen){
+  let tempLimite = ''
+  if(idgen === '1'){tempLimite = 'limit=151'}
+  if(idgen === '2'){tempLimite = 'limit=100&offset=151'}
+  if(idgen === '3'){tempLimite = 'limit=135&offset=251'}
+  if(idgen === '4'){tempLimite = 'limit=107&offset=386'}
+  if(idgen === '5'){tempLimite = 'limit=155&offset=494'}
+  if(idgen === '6'){tempLimite = 'limit=72&offset=649'}
+  if(idgen === '7'){tempLimite = 'limit=88&offset=721'}
+  if(idgen === '8'){tempLimite = 'limit=89&offset=809'}
+
+  return tempLimite
+}
+
 export function setZero(numberpkmn){
   if(numberpkmn < 10){return `#00${numberpkmn}`;}
   if(numberpkmn > 9 && numberpkmn < 100){return `#0${numberpkmn}`;}
   if(numberpkmn > 99){return `#${numberpkmn}`;}
+}
+
+export function setImgStyle(region){
+  let Image = Kanto
+  if(region === 'kanto'){Image = Kanto}
+  else if(region === 'johto'){Image = Johto}
+  else if(region === 'hoenn'){Image = Hoenn}
+  else if(region === 'sinnoh'){Image = Sinnoh}
+  else if(region === 'unova'){Image = Unova}
+  else if(region === 'kalos'){Image = Kalos}
+  else if(region === 'alola'){Image = Alola}
+  else if(region === 'galar'){Image = Galar}
+
+  const styles = {
+      paperContainer: {
+          backgroundImage: `url(${Image})`,
+          width:'100%',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'contain',
+          backgroundPosition: 'right'
+      }
+  }
+
+  return styles.paperContainer
 }
 
 const grassTheme = createTheme({
