@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunknewpokedex=self.webpackChunknewpokedex||[]).push([[40],{2040:function(e,n,r){r.r(n),r.d(n,{default:function(){return t}});var u=r(9388),p=r(8028),k=r(3384),s=r(2044),t=(0,u.pi)((0,u.pi)({renderer:s.b},p.s),k.E)}}]);
+//# sourceMappingURL=40.c82dd0d1.chunk.js.map
