@@ -73,9 +73,9 @@ function Generacion(){
     let tempLimite = ''
     if(idgen === '1'){tempLimite = 'limit=151'}
     if(idgen === '2'){tempLimite = 'limit=100&offset=151'}
-    if(idgen === '3'){tempLimite = 'limit=134&offset=251'}
+    if(idgen === '3'){tempLimite = 'limit=135&offset=251'}
     if(idgen === '4'){tempLimite = 'limit=107&offset=386'}
-    if(idgen === '5'){tempLimite = 'limit=154&offset=494'}
+    if(idgen === '5'){tempLimite = 'limit=155&offset=494'}
     if(idgen === '6'){tempLimite = 'limit=72&offset=649'}
     if(idgen === '7'){tempLimite = 'limit=88&offset=721'}
     if(idgen === '8'){tempLimite = 'limit=89&offset=809'}
