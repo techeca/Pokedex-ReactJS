@@ -25,7 +25,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 `/generacion/idgen` - Lista de pokemon según la generación seleccionada.\
 `/pokemon/idpokemon` - Detalles de Pokemon.\
 
-## TODO
+## Falta
 
 Agregar más categorias disponibles en API.\
 Arreglar origen descripciones.\
