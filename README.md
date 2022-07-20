@@ -27,16 +27,15 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Falta
 
-Agregar más categorias disponibles en API.\
-Arreglar origen descripciones.\
-Arreglar search (generacion).\
-Arreglar backButton en pokemon(details).\
-Agregar Moves por pokemon.\
-Agregar filtro por typo en generacion.\
-Agregar dark mode.\
-Spread simpleData con detailData.\
-Arreglar Loading.
-
+- [ ] Agregar más categorias disponibles en API.\
+- [ ] Arreglar origen descripciones.\
+- [x] Arreglar search (generacion).\
+- [ ] Arreglar backButton en pokemon(details).\
+- [ ] Agregar Moves por pokemon.\
+- [ ] Agregar filtro por typo en generacion.\
+- [ ] Agregar dark mode.\
+- [ ] Spread simpleData con detailData.\
+- [ ] Arreglar Loading.
 
 ## Imagenes
 
