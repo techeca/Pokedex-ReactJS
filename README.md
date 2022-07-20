@@ -1,10 +1,10 @@
 # PokeApp
 
-Plataforma para el consumo de la API [PokeAPI](https://pokeapi.co/)\
+Plataforma para el consumo de la API [PokeAPI](https://pokeapi.co/)
 
 Puedes ver:\
 -Generaciones\
--Pokemon(detalles)\
+-Pokemon(detalles)
 
 DEMO: https://techeca.github.io/Pokedex-ReactJS
 
@@ -23,7 +23,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 `/` - Home React. \
 `/pokeApp` - Panel para selección de región.\
 `/generacion/idgen` - Lista de pokemon según la generación seleccionada.\
-`/pokemon/idpokemon` - Detalles de Pokemon.\
+`/pokemon/idpokemon` - Detalles de Pokemon.
 
 ## Falta
 
