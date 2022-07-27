@@ -9,7 +9,50 @@ import Alola from 'images/starters/alola.png'
 import Galar from 'images/starters/galar.png'
 import Kalos from 'images/starters/kalos.png'
 import "@fontsource/poppins"
+
+import BugType from 'images/types/bug.png'
+import DarkType from 'images/types/dark.png'
+import DragonType from 'images/types/dragon.png'
+import ElectricType from 'images/types/electric.png'
+import FairyType from 'images/types/fairy.png'
+import FightingType from 'images/types/fighting.png'
+import FireType from 'images/types/fire.png'
+import GhostType from 'images/types/ghost.png'
+import GrassType from 'images/types/grass.png'
+import IceType from 'images/types/ice.png'
+import NormalType from 'images/types/normal.png'
+import PoisonType from 'images/types/poison.png'
+import PsychicType from 'images/types/psychic.png'
+import RockType from 'images/types/rock.png'
+import SteelType from 'images/types/steel.png'
+import WaterType from 'images/types/water.png'
+import FlyingType from 'images/types/flying.png'
+import GroundType from 'images/types/ground.png'
 //Funciones Re-utilizables
+
+export function getIconType(objType){
+  //console.log(objType)
+  let Image = BugType
+  if(objType.type.name === 'dark'){Image = DarkType}
+  else if(objType.type.name === 'dragon'){Image = DragonType}
+  else if(objType.type.name === 'electric'){Image = ElectricType}
+  else if(objType.type.name === 'fairy'){Image = FairyType}
+  else if(objType.type.name === 'fighting'){Image = FightingType}
+  else if(objType.type.name === 'fire'){Image = FireType}
+  else if(objType.type.name === 'ghost'){Image = GhostType}
+  else if(objType.type.name === 'grass'){Image = GrassType}
+  else if(objType.type.name === 'ice'){Image = IceType}
+  else if(objType.type.name === 'normal'){Image = NormalType}
+  else if(objType.type.name === 'poison'){Image = PoisonType}
+  else if(objType.type.name === 'psychic'){Image = PsychicType}
+  else if(objType.type.name === 'rock'){Image = RockType}
+  else if(objType.type.name === 'steel'){Image = SteelType}
+  else if(objType.type.name === 'water'){Image = WaterType}
+  else if(objType.type.name === 'flying'){Image = FlyingType}
+  else if(objType.type.name === 'ground'){Image = GroundType}
+
+  return Image
+}
 
 //Primera letra con mayusculas igual que textTransform
 export function capitalize(word){
@@ -36,6 +79,35 @@ export function checkType(type){
   }
 }
 
+export function paginate(array, pageSize, pageNumber) {
+// human-readable page numbers usually start with 1, so we reduce 1 in the first argument
+return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize)
+}
+
+//Convierte generation-i a 1
+export function getIdFromGen(genStr){
+  let temp = genStr.replace('generation-', '')
+  if(temp === 'i'){
+      return {numero:1, romano:temp}
+  }else if (temp === 'ii') {
+    return {numero:2, romano:temp}
+  }else if (temp === 'iii') {
+    return {numero:3, romano:temp}
+  }else if (temp === 'iv') {
+    return {numero:4, romano:temp}
+  }else if (temp === 'v') {
+    return {numero:5, romano:temp}
+  }else if (temp === 'vi') {
+    return {numero:6, romano:temp}
+  }else if (temp === 'vii') {
+    return {numero:7, romano:temp}
+  }else if (temp === 'viii') {
+    return {numero:8, romano:temp}
+  }
+}
+
+//Creo que esto se puede cambiar
+//Cuando se obtienen categorias viene la misma información (creo)
 export function getPkmnGen(idgen){
   let tempLimite = ''
   if(idgen === '1'){tempLimite = 'limit=151'}
@@ -89,6 +161,10 @@ const grassTheme = createTheme({
     secondary: {
       main: '#a43e9e',
     },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
+    },
     background: {
       default: '#74cb48',
     },
@@ -105,6 +181,10 @@ const fireTheme = createTheme({
     },
     secondary: {
       main: '#A891EC',
+    },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
     },
     background: {
       default: '#F57D31',
@@ -123,6 +203,10 @@ const waterTheme = createTheme({
     secondary: {
       main: '#a43e9e',
     },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
+    },
     background: {
       default: '#6493EB',
     },
@@ -139,6 +223,10 @@ const bugTheme = createTheme({
     },
     secondary: {
       main: '#A891EC',
+    },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
     },
     background: {
       default: '#A7B723',
@@ -157,6 +245,10 @@ const normalTheme = createTheme({
     secondary: {
       main: '#a43e9e',
     },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
+    },
     background: {
       default: '#AAA67F',
     },
@@ -173,6 +265,10 @@ const poisonTheme = createTheme({
     },
     secondary: {
       main: '#a43e9e',
+    },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
     },
     background: {
       default: '#a43e9e',
@@ -191,6 +287,10 @@ const electricTheme = createTheme({
     secondary: {
       main: '#a43e9e',
     },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
+    },
     background: {
       default: '#f9cf30',
     },
@@ -207,6 +307,10 @@ const groundTheme = createTheme({
     },
     secondary: {
       main: '#a43e9e',
+    },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
     },
     background: {
       default: '#dec16b',
@@ -225,6 +329,10 @@ const ghostTheme = createTheme({
     secondary: {
       main: '#a43e9e',
     },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
+    },
     background: {
       default: '#70559b',
     },
@@ -241,6 +349,10 @@ const fightingTheme = createTheme({
     },
     secondary: {
       main: '#a43e9e',
+    },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
     },
     background: {
       default: '#c12239',
@@ -259,6 +371,10 @@ const psychicTheme = createTheme({
     secondary: {
       main: '#a43e9e',
     },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
+    },
     background: {
       default: '#fb5584',
     },
@@ -275,6 +391,10 @@ const rockTheme = createTheme({
     },
     secondary: {
       main: '#a43e9e',
+    },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
     },
     background: {
       default: '#B69e31',
@@ -293,6 +413,10 @@ const iceTheme = createTheme({
     secondary: {
       main: '#a43e9e',
     },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
+    },
     background: {
       default: '#9ad6df',
     },
@@ -309,6 +433,10 @@ const dragonTheme = createTheme({
     },
     secondary: {
       main: '#a43e9e',
+    },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
     },
     background: {
       default: '#7037ff',
@@ -327,6 +455,10 @@ const fairyTheme = createTheme({
     secondary: {
       main: '#a43e9e',
     },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
+    },
     background: {
       default: '#e69eac',
     },
@@ -343,6 +475,10 @@ const flyingTheme = createTheme({
     },
     secondary: {
       main: '#a43e9e',
+    },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
     },
     background: {
       default: '#a891ec',
@@ -361,6 +497,10 @@ const darkTheme = createTheme({
     secondary: {
       main: '#a43e9e',
     },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
+    },
     background: {
       default: '#666666',
     },
@@ -377,6 +517,10 @@ const steelTheme = createTheme({
     },
     secondary: {
       main: '#a43e9e',
+    },
+    text:{
+      primary:'rgba(0,0,0,0.87)',
+      secondary:'rgba(240,240,240,0.87)'
     },
     background: {
       default: '#b7b9d0',

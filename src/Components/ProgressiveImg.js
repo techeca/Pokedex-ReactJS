@@ -1,10 +1,6 @@
-import { useState, useEffect } from "react";
-import ProgressiveImage from "react-progressive-graceful-image";
-import placeholderSrc from 'images/placeholderSrc.png'
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import placeholderSrc from 'images/placeholderSrc.png';
 
- const ProgressiveImg = ({ placeholderSrc, src,...props }) => {
+ const ProgressiveImg = ({ src,...props }) => {
 
   return (
     <img
@@ -13,6 +9,7 @@ import { useInView } from "react-intersection-observer";
       width="70%"
       height="80%"
       placeholder={placeholderSrc}
+      alt={'pkmn'}
     />
 
   );

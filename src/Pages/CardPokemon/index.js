@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useCallback} from 'react';
+import React, { useState, useEffect, useCallback, useContext} from 'react';
 import PresenterCardWeb from './PresenterCardWeb';
 import PresenterCardMobile from './PresenterCardMobile';
 import { useParams, useNavigate } from 'react-router-dom'
+import { userContext } from '../Context.js';
 //import {isMobile} from 'react-device-detect';
 
-function Cont ({match}) {
+function Cont({mode}) {
   const [data, setData] = useState([]);
   const [data2, setData2] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,11 +13,12 @@ function Cont ({match}) {
   const [imgPkmn, setImgPkmn] = useState([]);
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
+  const webContext = useContext(userContext);
   //const [isMobile, setIsMobile] = useState(false);
-
-function handleWindowSizeChange() {
+  //console.log(mode)
+  function handleWindowSizeChange() {
     setWidth(window.innerWidth);
-}
+  }
 
   const fetchInventory = useCallback(() => {
     return fetch(`https://pokeapi.co/api/v2/pokemon/${idpkmn}`)
@@ -66,12 +68,12 @@ function handleWindowSizeChange() {
 
   if(isMobile){
     return(
-      <PresenterCardMobile pokemonResult={data} pkmnDetail={data2} loading={loading} imagen={imgPkmn} navigate={navigate} />
+      <PresenterCardMobile pokemonResult={data} pkmnDetail={data2} loading={loading} imagen={imgPkmn} navigate={navigate} lang={webContext.lang} mode={mode} />
     )
   }else {
     return(
 
-      <PresenterCardWeb pokemonResult={data} pkmnDetail={data2} loading={loading} imagen={imgPkmn} navigate={navigate} />
+      <PresenterCardWeb pokemonResult={data} pkmnDetail={data2} loading={loading} imagen={imgPkmn} navigate={navigate} lang={webContext.lang} mode={mode} />
     )
   }
 

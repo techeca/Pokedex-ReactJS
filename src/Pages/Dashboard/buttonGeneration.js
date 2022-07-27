@@ -1,57 +1,52 @@
-import React, {useState, useEffect, useCallback} from 'react'
-import {Paper, Typography, Box} from '@mui/material'
-
+import { useState, useEffect, useCallback } from 'react'
+import { Paper, Typography, Box } from '@mui/material'
 import { Link } from 'react-router-dom';
-import { useInView } from "react-intersection-observer";
-import { motion, useAnimation } from "framer-motion";
+import { capitalize, setImgStyle } from 'utils.js'
 
-import {capitalize, setImgStyle} from 'utils.js'
+export default function ButtonGeneration({ g, getDet, theme, lang }){
+  const [simpleData, setSimpleData] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
-export default function ButtonGeneration(g){
-  const [simpleData, setSimpleData] = useState('')
-  const [loading, setLoading] = useState(true)
-  const generation = g.g
-  const controls = useAnimation();
-  const [ref, inView] = useInView();
+//Obtiene los detalles de la categoría entregada
+//Más adelante podría crear panel que se expanda, muestre más detalles y
+//un boton para ver lista de pkmn
+  const initWeb = useCallback (() => {
+    getDet(g.url).then((data) => setSimpleData(data));
+  }, [g.url, getDet])
 
-  const getData = useCallback(() => {
-      return fetch(generation.url)
-      .then((res) => res.json())
-        .then((res) => {
-          setSimpleData(res)
-        })
-      .catch((err) => {console.log(err)})
-
-  }, [generation.url])
- 
   useEffect(() => {
-      getData().then(() => setLoading(false))
-      if(inView){
-        controls.start('show')
-      }
-  }, [controls, inView, getData])
+    initWeb()
+  }, [initWeb])
 
-  const item = {
-    hidden: {opacity: 0, y: 50, transition: { ease: [0.78, 0.14, 0.15, 0.86] }},
-    show: {opacity: 1, y: 0, transition: { ease: [0.78, 0.14, 0.15, 0.86] }}
-};
+//Obtiene el nombre de la generación según el idioma que se entrega
+  function getLang(objGen, lang){
+      return objGen.names.filter((name) => name.language.name === lang)
+             .map((name) => name.name)
+  }
 
-  return(loading ?<Box></Box> :
-      <motion.div variants={item} initial="hidden" animate={controls} ref={ref}>
-      <Paper variant='outlined' sx={{mt:2, textAlign:'left'}} style={setImgStyle(simpleData['main_region'].name)}>
+//Si los datos están cargados e icono de carga aún en vista
+  if(simpleData && isLoading){setIsLoading(false)}
+
+  return ( isLoading ?<></> :
+
+      <Paper variant='outlined' sx={{mt:2, textAlign:'left', bgcolor:'primary.main'}} style={setImgStyle(simpleData['main_region'].name)}>
         <Link style={{ textDecoration: 'none' }} to={`/generacion/${simpleData.id}`}>
           <Box sx={{display:'flex', p:1, flexDirection:'column'}}>
-          <Typography variant={'h5'} sx={{color:'text.primary', fontSize:'1.10em', fontWeight:'Bold'}}>
-            {simpleData.names.map((name) => {if(name.language.name === 'en'){return name.name}else {
-              return <></>
-            }})}
-          </Typography>
-          <Typography sx={{color:'text.primary'}}>
-            {capitalize(simpleData['main_region'].name)}
-          </Typography>
+            <Box sx={{display:'flex', flexDirection:'row'}}>
+              <Typography variant={'h5'} sx={{color:'text.primary', fontSize:'1.10em', fontWeight:'Bold', mr:2}}>
+                {getLang(simpleData, lang)}
+              </Typography>
+              <Typography sx={{color:'red', fontSize:'1.10em'}} style={{textShadow:'1px 1px 1px 1px black'}}>{simpleData.pokemon_species.length}</Typography>
+            </Box>
+            <Typography variant={'h5'} sx={{color:'text.primary', fontSize:'0.8em', fontWeight:'Bold', mt:-0.5}}>
+              Moves: {simpleData.moves.length}
+            </Typography>
+            <Typography sx={{color:'text.primary'}}>
+              {capitalize(simpleData['main_region'].name)}
+            </Typography>
           </Box>
         </Link>
       </Paper>
-      </motion.div >
+
   )
 };

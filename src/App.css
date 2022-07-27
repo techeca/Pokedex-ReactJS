@@ -1,6 +1,8 @@
 .App {
   text-align: center;
-  font-family: 'Poppins'
+  min-height: 100vh;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .App-logo {

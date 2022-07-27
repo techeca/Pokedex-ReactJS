@@ -1,11 +1,20 @@
 import React from 'react';
-import pokeball from '../LoadBall.css';
 import Box from '@mui/material/Box';
+import './Styles/LoadBall.css'
 
+
+//https://codepen.io/g00glen00b/pen/pNdvwN
 function Load(){
   return(
-    <Box sx={{height:'100%',display:'flex', justifyContent:'center', mt:'65%'}}>
-      <div className="pokeball">
+    <Box sx={{height:'100vh',display:'flex', justifyContent:'center'}}>
+      <div className='pokeball'>
+        <div className='upper'>
+          <div className='inner'></div>
+        </div>
+        <div className='middle'></div>
+        <div className='lower'>
+          <div className='inner'></div>
+        </div>
       </div>
     </Box>
   )

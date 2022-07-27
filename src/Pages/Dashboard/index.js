@@ -1,90 +1,70 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import {Container, AppBar, Toolbar, Box, Avatar, Typography, Paper } from '@mui/material'
+import { useState, useEffect } from 'react'
+import { Container, AppBar, Toolbar, Box, Avatar, Typography, Paper, FormControlLabel } from '@mui/material'
 import { motion } from "framer-motion";
 import ButtonGeneration from './buttonGeneration.js'
 import Load from 'Components/Load.js'
 import Poke from 'images/pokeball.png'
+import { MaterialUISwitch } from 'Components/MUISwitch.js'
+import { getCategorias, getDetailsGen } from 'Data/APIPkmn.js';
 
-const defaultTheme = createTheme({
-    palette: {
-      mode: 'light',
-      primary: {
-        main: '#f7f7f7',
-      },
-      secondary: {
-        main: '#e0e0e0',
-      },
-      text: {
-      primary: 'rgba(0,0,0,0.87)',
-      },
-      background: {
-        default: '#f7f7f7',
-      },
-    },
-    typography: {
-      fontFamily: 'Poppins',
-    },
-  });
+function Generacion({ lang, mode, changetheme }){
+  const [simpleData, setSimpleData] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [modeWeb, setModeWeb] = useState(mode === 'dark' ? true : false); //Para switch mode
 
-function Generacion(){
-  const [simpleData] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
-
-  const getSimpleData = useCallback(() => {
-    if(simpleData.length === 0){
-      return fetch(`https://pokeapi.co/api/v2/generation/`)
-      .then((res) => res.json())
-        .then((res) => {
-            simpleData.push(res)
-          })
-      .catch((err) => {setError(err)})
-    }
-  }, [simpleData])
-
+  //Obtiene generaciones (sin detalles) y las guarda en simpleData
   useEffect(() => {
-    if(!simpleData.length){
-      getSimpleData().then(() => setLoading(false))
-    }
-  }, [getSimpleData, simpleData.length])
+    getCategorias().then((data) => setSimpleData(data));
+  }, [])
 
-  if(error || !Array.isArray(simpleData)){
-    return <p>Error...</p>
+  function handleChangeSwitch(e) {
+    changetheme.local(mode === 'dark' ? 'light' : 'dark')
+    changetheme.web(mode === 'dark' ? 'light' : 'dark')
+    setModeWeb(e.target.checked)
   }
 
-  return(
-    loading ? <Load /> :
-          <ThemeProvider theme={defaultTheme}>
-            <Container sx={{p:0, backgroundColor:'primary.main'}}>
-              <AppBar elevation={0} position='static' sx={{border:0}}>
-                <Container>
+  //Si simpleData ya está cargado e icono de loading aún está en vista
+  if(simpleData && isLoading){setIsLoading(false)}
+
+  return ( isLoading ? <Load /> :
+            <Container sx={{p:0, backgroundColor:'primary.main', minWidth:'100%'}}>
+
+              {/*AppBar xD contiene icono y título 'PokeApp', animación en icono y título*/}
+              <AppBar elevation={0} position='static' sx={{border:0, backgroundColor:'primary.main'}}>
+                <Container sx={{}}>
                   <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex' } }}>
+                      {/*Animación e icono de pokebola*/}
                       <motion.div style={{opacity:0}} animate={{opacity:1, rotate:360}} transition={{ duration: 1 }}>
-                        <Avatar src={Poke} sx={{}}/>
+                        <Avatar alt='logo' src={Poke} sx={{height:'50px', width:'50px'}}/>
                       </motion.div>
+                      {/*Título*/}
                       <motion.div style={{opacity:0}} animate={{opacity:1}} transition={{ duration: 1 }}>
-                        <Typography variant='h5' sx={{ml:3, mt:0.5,fontWeight:'900', fontSize:'1.5rem'}}>
+                        <Typography variant='h5' sx={{ml:3, mt:1,fontWeight:'900', fontSize:'1.5rem'}}>
                          PokeApp
                         </Typography>
                       </motion.div>
                     </Box>
+                    <Box sx={{display:'flex', justifyContent:'center', ml:3}}>
+                      <FormControlLabel control={<MaterialUISwitch sx={{ m:2, mt:3 }} theme={mode} checked={modeWeb} onChange={(e) => handleChangeSwitch(e)} />} label="" />
+                    </Box>
                   </Toolbar>
                 </Container>
               </AppBar>
-              <Box sx={{maxWidth:'95%', mb:2, mx:'auto', display:'flex', justifyContent:'flex-start'}}>
-              </Box>
-                  <Box sx={{display:'flex', justifyContent: 'center', flexWrap:'wrap'}}>
-                    <Paper sx={{height:'90%', width:'90%', p:3}} variant='outlined'>
-                      {simpleData[0].results.map((generation, i) =>
-                        {return <ButtonGeneration key={i} g={generation} />}
+
+                  <Box sx={{display:'flex', justifyContent: 'center', flexWrap:'wrap', mt:1}}>
+                    <Paper sx={{width:'90%', p:3}} variant='outlined'>
+                    <Box sx={{pb:0, mx:'auto', display:'block', justifyContent:'flex-start', mt:0}}>
+                      <Typography variant='h5'>Generations</Typography>
+                      {simpleData.results.map((generation, i) =>
+                        <ButtonGeneration key={i} g={generation} getDet={getDetailsGen} lang={lang} />
                       )}
+                    </Box>
+
                     </Paper>
                   </Box>
             </Container>
-            </ThemeProvider>
-    )
+          )
   }
 
 export default Generacion;

@@ -1,4 +1,4 @@
-import {Container, Paper, AppBar, Toolbar, Box, Typography, Avatar, IconButton, Chip, Grid, Divider, ThemeProvider, CssBaseline, Slide} from '@mui/material'
+import {Container, Paper, AppBar, Toolbar, Box, Typography, Avatar, IconButton, Chip, Grid, Divider, ThemeProvider, Slide} from '@mui/material'
 import MonitorWeightOutlinedIcon from '@mui/icons-material/MonitorWeightOutlined'
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
@@ -37,8 +37,8 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigat
   loading ? (<Load />) : (
   <motion.div style={{ opacity:0, width:'100%', height:'100%', overflow:'hidden'}} animate={{opacity:1}} transition={{duration:1}}>
   <ThemeProvider theme={changeTheme(pokemonResult['types'][0].type.name)} >
-  <CssBaseline>
-    <Container  sx={{width:'100%', height:'100%'}} >
+
+    <Container sx={{width:'100%', height:'100%'}} >
     <AppBar elevation={0} position='static' sx={{border:0, mt:2}} >
 
         <Toolbar disableGutters>
@@ -295,7 +295,7 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigat
     </AppBar>
 
     </Container>
-    </CssBaseline>
+
   </ThemeProvider>
   </motion.div>
   );
