@@ -24,7 +24,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 `/pokemon/idpokemon` - Detalles de Pokemon según `idpokemon`.
 
 `idpokemon` Número de pokemon según pokedex nacional.\
-`idgen` Número de generación según se lanzamiento.
+`idgen` Número de generación según lanzamiento.
 
 ## Falta
 
@@ -42,10 +42,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Imagenes
 
-![1](https://user-images.githubusercontent.com/53408118/167732055-760768df-d4b1-437f-8f09-ad5605d2b781.PNG)
-![2](https://user-images.githubusercontent.com/53408118/167732057-22b52731-b8a5-445e-9782-b733e5a0d4a3.PNG)
-![3](https://user-images.githubusercontent.com/53408118/167732058-aeccebd2-017c-4f2a-ac00-1cd36349ba65.PNG)
-![imagen_2022-05-11_091014847](https://user-images.githubusercontent.com/53408118/167857745-fba2e945-4f10-45b8-9075-22c542bacf81.png)
+![test](https://user-images.githubusercontent.com/53408118/181391245-43ceb537-12ef-4a63-85a8-0e6d372cef59.PNG)
+![test2](https://user-images.githubusercontent.com/53408118/181391255-a5c34518-e7ab-46e3-9f0f-cb4ca886c165.PNG)
+![test6](https://user-images.githubusercontent.com/53408118/181391671-eec76cb8-456d-483d-a530-ab2b21f21745.PNG)
+![test7](https://user-images.githubusercontent.com/53408118/181391681-bd07f9fe-4edc-4ee0-a041-ee9e2a0cf7ea.PNG)
+
 
 ## More
 
