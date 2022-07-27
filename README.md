@@ -6,8 +6,6 @@ Puedes ver:\
 -Generaciones\
 -Pokemon(detalles)
 
-DEMO: https://techeca.github.io/Pokedex-ReactJS
-
 Para pruebas locales:
 
 ```bash
@@ -22,20 +20,25 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 `/` - Home React. \
 `/pokeApp` - Panel para selección de región.\
-`/generacion/idgen` - Lista de pokemon según la generación seleccionada.\
-`/pokemon/idpokemon` - Detalles de Pokemon.
+`/generacion/idgen` - Lista de pokemon según `idgen`.\
+`/pokemon/idpokemon` - Detalles de Pokemon según `idpokemon`.
+
+`idpokemon` Número de pokemon según pokedex nacional.\
+`idgen` Número de generación según se lanzamiento.
 
 ## Falta
 
-- [ ] Agregar más categorias disponibles en API.\
-- [ ] Arreglar origen descripciones.\
-- [x] Arreglar search (generacion).\
-- [ ] Arreglar backButton en pokemon(details).\
-- [ ] Agregar Moves por pokemon.\
-- [ ] Agregar filtro por typo en generacion.\
-- [ ] Agregar dark mode.\
-- [ ] Spread simpleData con detailData.\
-- [ ] Arreglar Loading.
+- [ ] Agregar más categorias disponibles en API.
+- [x] Arreglar origen descripciones.
+- [x] Arreglar search (generacion).
+- [x] Arreglar backButton en pokemon(details).
+- [ ] Agregar Moves por pokemon.
+- [ ] Agregar filtro por typo en generación.
+- [x] Agregar dark mode.
+- [ ] Spread simpleData con detailData.
+- [ ] Arreglar Loading (se ve mal) update: cambiado pero se sige viendo mal.
+- [ ] Arreglar temas (lo arruiné :P) update: falta versión web
+- [ ] Agregar decimales a KG y M
 
 ## Imagenes
 
@@ -43,7 +46,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ![2](https://user-images.githubusercontent.com/53408118/167732057-22b52731-b8a5-445e-9782-b733e5a0d4a3.PNG)
 ![3](https://user-images.githubusercontent.com/53408118/167732058-aeccebd2-017c-4f2a-ac00-1cd36349ba65.PNG)
 ![imagen_2022-05-11_091014847](https://user-images.githubusercontent.com/53408118/167857745-fba2e945-4f10-45b8-9075-22c542bacf81.png)
-
 
 ## More
 
