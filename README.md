@@ -20,10 +20,12 @@ Open [http://localhost:3000/Pokedex-ReactJS](http://localhost:3000/Pokedex-React
 
 `/` - Home React. (Posiblemente será cambiada) \
 `/pokeApp` - Panel para selección de región.\
-Desde aqui se puede cambiar el tema (light/dark)/
+Desde aqui se puede cambiar el tema (light/dark)
+
 `/generacion/idgen` - Lista de pokemon según `idgen`.\
 Lista con los pokemon de la generación seleccionada.\
-Puede filtrar por tipo o buscar por nombre, carga inicial de 18 pokemon y carga 18 más cuando llega al final de la página.\
+Puede filtrar por tipo o buscar por nombre, carga inicial de 18 pokemon y carga 18 más cuando llega al final de la página.
+
 `/pokemon/idpokemon` - Detalles de Pokemon según `idpokemon`.\
 Al momento hay 2 componentes para mostrar detalles, uno para web y otro para mobiles, esto se debe cambiar.
 
