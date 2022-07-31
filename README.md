@@ -19,6 +19,7 @@ Open [http://localhost:3000/Pokedex-ReactJS](http://localhost:3000/Pokedex-React
 ### Rutas
 
 `/` - Home React. (Posiblemente será cambiada) \
+
 `/pokeApp` - Panel para selección de región.\
 Desde aqui se puede cambiar el tema (light/dark)
 
@@ -61,6 +62,10 @@ Muestra los detalles básicos del pokemon seleccionado, id, name, generation, ty
 - [ ] Agregar cambio de idiomas.
 
 `fetchMoreData`: Carga más pokemon cuando se llega al final de la página en `/generacion`
+
+Los más urgente:
+Filtro de tipos: efecta el funcionamento
+loading: afecta lista (Solo web, en móbiles/emuladores, funciona bien)
 
 ## Imagenes
 
