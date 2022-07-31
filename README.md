@@ -23,14 +23,18 @@ Open [http://localhost:3000/Pokedex-ReactJS](http://localhost:3000/Pokedex-React
 `/pokeApp` - Panel para selección de región.\
 Desde aqui se puede cambiar el tema (light/dark)
 
+![mode-teme](https://user-images.githubusercontent.com/53408118/182007744-f3136870-c41b-4f59-979f-6e23e9e192c0.png)
+
 `/generacion/idgen` - Lista de pokemon según `idgen`.\
 Lista con los pokemon de la generación seleccionada.\
 Puede filtrar por tipo o buscar por nombre, carga inicial de 18 pokemon y carga 18 más cuando llega al final de la página.
 
+![search-filter](https://user-images.githubusercontent.com/53408118/182007769-44b87369-c973-456c-a4d8-85a4bb671e36.png)
+
 `/pokemon/idpokemon` - Detalles de Pokemon según `idpokemon`.\
 Al momento hay 2 componentes para mostrar detalles, uno para web y otro para mobiles, esto se debe cambiar.
+Muestra los detalles básicos del pokemon seleccionado, id, name, generation, type, mith/leng, description, base stats, base happiness, capture rate y base experience.
 
-Muestra los detalles básicos del pokemon seleccionado, id, name, generation, type, mith/leng, description, base stats, base happiness, capture rate y base experience.  
 (Faltan moves, chain evolution)
 
 `idpokemon` Número de pokemon según pokedex nacional.\
@@ -69,10 +73,14 @@ loading: afecta lista (Solo web, en móbiles/emuladores, funciona bien)
 
 ## Imagenes
 
-![test](https://user-images.githubusercontent.com/53408118/181391245-43ceb537-12ef-4a63-85a8-0e6d372cef59.PNG)
-![test2](https://user-images.githubusercontent.com/53408118/181391255-a5c34518-e7ab-46e3-9f0f-cb4ca886c165.PNG)
-![test6](https://user-images.githubusercontent.com/53408118/181391671-eec76cb8-456d-483d-a530-ab2b21f21745.PNG)
-![test7](https://user-images.githubusercontent.com/53408118/181391681-bd07f9fe-4edc-4ee0-a041-ee9e2a0cf7ea.PNG)
+![genB](https://user-images.githubusercontent.com/53408118/182007801-3783207e-09cf-4112-936b-47d36b2b4330.png)
+![gensW](https://user-images.githubusercontent.com/53408118/182007803-9e014de1-1e56-4a9b-8a87-291802b4674d.png)
+
+![detB](https://user-images.githubusercontent.com/53408118/182007828-dd6edfc5-d91c-42c2-8a1d-7828133f0abe.png)
+![detW](https://user-images.githubusercontent.com/53408118/182007829-dbdc9928-911b-4adb-b428-25534b148aab.png)
+
+![webB](https://user-images.githubusercontent.com/53408118/182007806-009f108e-6cbc-4aaf-81fe-25e73ec479de.PNG)
+
 
 ## More
 
