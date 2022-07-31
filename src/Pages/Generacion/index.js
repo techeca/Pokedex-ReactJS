@@ -70,7 +70,7 @@ function Generacion({ mode }){
       )
     }
   }
-
+  
   //Si hay datos e icono de carga aún está en vista
   if(simpleData && types && loading){setLoading(false)}
 
