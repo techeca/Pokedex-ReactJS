@@ -4,7 +4,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { paginate } from 'utils.js'
 import { motion } from "framer-motion";
 
-export default function ContentLoad({ simpleData, detailData, setDetailData, inputText, page, setPage, mode}){
+export default function ContentLoad({ simpleData, detailData, setDetailData, inputText, page, setPage, mode, types}){
   let tempData = [];
   const container = {
     hidden: { opacity: 0 },
@@ -27,12 +27,13 @@ export default function ContentLoad({ simpleData, detailData, setDetailData, inp
 
   //Si hay contenido en el input de búsqueda filtra la lista de pkmn
   //Si no, entrega la lista completa
+  //console.log(simpleData)
   if(inputText !== ''){tempData = simpleData.results.filter((pkmn) => pkmn.name.includes(inputText))}
   //console.log(simpleData.results.length);
   if(tempData.length > 0){
     return(tempData.map((x, i) =>
       <Box key={i} sx={{maxWidth:'180px'}}>
-        <MiniCardPokemon p={x} mode={mode} />
+        <MiniCardPokemon p={x} mode={mode} typeFilter={types} />
       </Box>
     ))
     }else {
@@ -42,7 +43,7 @@ export default function ContentLoad({ simpleData, detailData, setDetailData, inp
           <motion.div initial='hidden' animate='show' variants={container}>
             {detailData.map((x, i) =>
                  <Box sx={{maxWidth:'30%'}} key={i}>
-                   <MiniCardPokemon p={x} mode={mode} />
+                   <MiniCardPokemon p={x} mode={mode} typeFilter={types} />
                  </Box>
               )}
           </motion.div>

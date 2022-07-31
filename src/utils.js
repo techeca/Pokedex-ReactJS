@@ -88,21 +88,21 @@ return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize)
 export function getIdFromGen(genStr){
   let temp = genStr.replace('generation-', '')
   if(temp === 'i'){
-      return {numero:1, romano:temp}
+      return {numero:1, romano:'I'}
   }else if (temp === 'ii') {
-    return {numero:2, romano:temp}
+    return {numero:2, romano:'II'}
   }else if (temp === 'iii') {
-    return {numero:3, romano:temp}
+    return {numero:3, romano:'III'}
   }else if (temp === 'iv') {
-    return {numero:4, romano:temp}
+    return {numero:4, romano:'IV'}
   }else if (temp === 'v') {
-    return {numero:5, romano:temp}
+    return {numero:5, romano:'V'}
   }else if (temp === 'vi') {
-    return {numero:6, romano:temp}
+    return {numero:6, romano:'VI'}
   }else if (temp === 'vii') {
-    return {numero:7, romano:temp}
+    return {numero:7, romano:'VII'}
   }else if (temp === 'viii') {
-    return {numero:8, romano:temp}
+    return {numero:8, romano:'VIII'}
   }
 }
 

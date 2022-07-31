@@ -1,15 +1,14 @@
-import { Container, Paper, AppBar, Toolbar, Box, Typography, Avatar, IconButton, Chip, Grid, Divider, ThemeProvider, CssBaseline, Slide } from '@mui/material'
+import { Container, Paper, AppBar, Toolbar, Box, Typography, Avatar, IconButton, Chip, Grid, Divider, ThemeProvider, Slide } from '@mui/material'
 import MonitorWeightOutlinedIcon from '@mui/icons-material/MonitorWeightOutlined'
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { capitalize, replaceChar, changeTheme, setZero, getIdFromGen } from 'utils.js'
 import { motion } from "framer-motion"
-import PokeTrans from 'images/poketransw.png'
 import Load from 'Components/Load.js'
 import logo2 from 'images/logo2.png'
 import logo3 from 'images/logo3.png'
-import { useParams, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function otherDetail(pkmnValue, dataName, lang, mode){
   return(<>
@@ -45,7 +44,7 @@ function getFlavorText(objPkmn, lang, mode){
     .map((text) => text.flavor_text))
 }
 
-const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigate, lang, mode}) =>
+const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, lang, mode}) =>
 
   loading ? (<Load />) : (
   <motion.div style={{ opacity:0, overflow:'hidden'}} animate={{opacity:1}} transition={{duration:1}}>
@@ -54,10 +53,11 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigat
         <AppBar elevation={0} position='static' sx={{bgcolor:'primary.main'}}>
           <Container>
             {/*Back button, nombre de pokemon y numero de pokedex*/}
+
             <ThemeProvider theme={changeTheme(pokemonResult['types'][0].type.name)}>
             <Toolbar disableGutters>
             {/*Back button (malo, deberñia devolver a la lista de pokemon, si se cambia de pokemon vuelve al pokemon al que estaba)*/}
-            {/*Nombre de pokemon*/}
+            {/* y Nombre de pokemon*/}
               <Box  sx={{flexGrow: 1, display: {xs: 'flex'}}}>
                 <Link style={{ textDecoration: 'none' }} to={`/generacion/${getIdFromGen(pkmnDetail.generation.name).numero}`}>
                   <IconButton aria-label='backbtn' sx={{ml:-3}}>
@@ -66,7 +66,7 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigat
                 </Link>
                 {/*Nombre de pokemon*/}
                 <Typography color='primary.main' variant='h5' sx={{ml:2, fontWeight:'Bold', mt:0.5}}>
-                 {capitalize(pokemonResult.name)}
+                 {capitalize(pokemonResult.name).replace('-', ' ')}
                 </Typography>
               </Box>
               {/*Numero de pokemon*/}
@@ -81,7 +81,7 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigat
               <Box sx={{border:0, color:'white', borderRadius:5, pl:1.3, pr:1.3, pt:0, pb:0.5, bgcolor:'text.primary'}}>
                 <Typography variant='' sx={{fontSize:'0.80em'}}>
                     {/*capitalize(pkmnDetail.generation.name.replace('-', ' '))*/}
-                    GEN {capitalize(getIdFromGen(pkmnDetail.generation.name).romano)}
+                    GEN {getIdFromGen(pkmnDetail.generation.name).romano}
                 </Typography>
               </Box>
 
@@ -127,7 +127,8 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigat
               <Box sx={{mt:'-90%', mb:'15%', mx:'auto', display:'flex', flexwrap: 'nowrap', justifyContent:'center'}}>
               <motion.div style={{ y:150, opacity:0, width:'80%'}} animate={{y:0, opacity:0.99}} transition={{duration:1}}>
                   <Box>
-                  <img alt={pokemonResult.name} src={imagen} width='100%' height='auto' sx={{minWidth:340}}/>
+
+                  <img alt={pokemonResult.name} src={pokemonResult['sprites']['other']['official-artwork']['front_default']} width='100%' height='auto' sx={{minWidth:340}}/>
                   </Box>
               </motion.div>
               </Box>
@@ -179,8 +180,8 @@ const PresenterDashboard = ({pokemonResult, pkmnDetail, loading, imagen, navigat
                     {/*Habilidades de pokemon*/}
                     <Grid item xs sx={{}}>
                       <Box sx={{justifyContent:'center', fontSize: 14, mt:0.1, color:mode === 'light' ? 'text.primary' : 'text.secondary'}}>
-                        <Typography variant='span' sx={{textTransform:'capitalize'}}>{pokemonResult['abilities'][0].ability.name}</Typography>
-                        <Typography variant='span' sx={{display:'block'}}>{pokemonResult['abilities'].length > 1 ? capitalize(pokemonResult['abilities'][1].ability.name) : <></>}</Typography>
+                        <Typography variant='span' sx={{textTransform:'capitalize'}}>{pokemonResult['abilities'][0].ability.name.replace('-', ' ')}</Typography>
+                        <Typography variant='span' sx={{display:'block'}}>{pokemonResult['abilities'].length > 1 ? capitalize(pokemonResult['abilities'][1].ability.name.replace('-', ' ')) : <></>}</Typography>
                       </Box>
                       <Box sx={{mt:'5%'}}>
                         <Typography variant='span' sx={{fontSize:13, fontWeight:'light', color:'primary.main'}}>

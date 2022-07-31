@@ -3,77 +3,51 @@ import PresenterCardWeb from './PresenterCardWeb';
 import PresenterCardMobile from './PresenterCardMobile';
 import { useParams, useNavigate } from 'react-router-dom'
 import { userContext } from '../Context.js';
+import { getDetailsPkmn, getMoreDetailsPkmn } from 'Data/APIPkmn.js'
 //import {isMobile} from 'react-device-detect';
 
 function Cont({mode}) {
-  const [data, setData] = useState([]);
-  const [data2, setData2] = useState([]);
+  const [data, setData] = useState('');
+  const [data2, setData2] = useState('');
   const [loading, setLoading] = useState(true);
   const { idpkmn } = useParams();
-  const [imgPkmn, setImgPkmn] = useState([]);
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
   const webContext = useContext(userContext);
   //const [isMobile, setIsMobile] = useState(false);
-  //console.log(mode)
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
   }
 
-  const fetchInventory = useCallback(() => {
-    return fetch(`https://pokeapi.co/api/v2/pokemon/${idpkmn}`)
-    .then(data => data.json())
+  const initWeb = useCallback(() => {
+      getDetailsPkmn(idpkmn).then((data) => setData(data))
   }, [idpkmn])
 
-  const fetchDetails = useCallback(() => {
-    return fetch(`https://pokeapi.co/api/v2/pokemon-species/${idpkmn}`)
-      .then(data => data.json())
+  const moreDetails = useCallback(() => {
+    getMoreDetailsPkmn(idpkmn).then((data) => setData2(data))
   }, [idpkmn])
 
   useEffect(() => {
-    let mounted = true;
-    let load1 = true;
-    let load2 = true;
-      fetchInventory()
-      .then(items => {
-        if({mounted}) {
-          setData(items)
-          setImgPkmn(items['sprites']['other']['official-artwork']['front_default'])
-          load1 = false;
-          if(!load2){setLoading(false)}
-          window.scrollTo(0,0)
-
-        }
-      })
-
-      fetchDetails()
-      .then(items => {
-        if({mounted}) {
-          setData2(items)
-          load2 = false;
-          if(!load1){setLoading(false)}
-        }
-      })
-
-
-
-      window.addEventListener('resize', handleWindowSizeChange);
-      return () => {
+    initWeb()
+    moreDetails()
+    window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
           window.removeEventListener('resize', handleWindowSizeChange);
-      }
+    }
+  }, [initWeb, moreDetails, width])
 
-  }, [fetchDetails, fetchInventory, width])
+  const isMobile = width <= 1200;
 
-  const isMobile = width <= 768;
+  if(data && data2 && loading){setLoading(false)}
 
   if(isMobile){
     return(
-      <PresenterCardMobile pokemonResult={data} pkmnDetail={data2} loading={loading} imagen={imgPkmn} navigate={navigate} lang={webContext.lang} mode={mode} />
+      <PresenterCardMobile pokemonResult={data} pkmnDetail={data2} loading={loading} lang={webContext.lang} mode={mode} />
     )
   }else {
     return(
 
-      <PresenterCardWeb pokemonResult={data} pkmnDetail={data2} loading={loading} imagen={imgPkmn} navigate={navigate} lang={webContext.lang} mode={mode} />
+      <PresenterCardWeb pokemonResult={data} pkmnDetail={data2} loading={loading} lang={webContext.lang} mode={mode} />
     )
   }
 

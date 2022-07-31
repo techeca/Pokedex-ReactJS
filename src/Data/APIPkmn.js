@@ -17,7 +17,18 @@ export function getPkmnByGen(rango){
 }
 
 //Detalles de pokemon
-export function getDetailsPkmn(urlPkmn){
-  return fetch(`${urlPkmn}`)
-  .then((res) => res.json())
+export function getDetailsPkmn(idPkmn){
+  let tempUrl = isNaN(idPkmn) ? idPkmn.replace('https://pokeapi.co/api/v2/pokemon/', '').replace('/', '') : idPkmn;
+      return fetch(`https://pokeapi.co/api/v2/pokemon/${tempUrl}/`)
+             .then((res) => res.json())
+}
+
+export function getMoreDetailsPkmn(idPkmn){
+  return fetch(`https://pokeapi.co/api/v2/pokemon-species/${idPkmn}/`)
+             .then((res) => res.json())
+}
+
+export function getAllTypes(){
+  return fetch(`https://pokeapi.co/api/v2/type`)
+         .then((res) => res.json())
 }
